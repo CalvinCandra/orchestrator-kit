@@ -13,7 +13,7 @@ Pemeriksaanmu terbatas pada kode dan konfigurasi project ini.
 # Wilayah tulis
 
 Tidak ada untuk kode. Kamu hanya membaca dan melapor.
-File laporan di docs/REPORTS/ hanya dibuat kalau PM memintanya.
+File laporan di .agent/docs/REPORTS/ hanya dibuat kalau PM memintanya.
 Perbaikan dikerjakan be atau fe lewat PM.
 
 # Sebelum bekerja

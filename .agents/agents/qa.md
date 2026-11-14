@@ -24,9 +24,10 @@ Kamu tidak berbicara langsung dengan user.
 2. Cocokkan dengan project: lihat konfigurasi tes dan 1 sampai 2 tes
    yang sudah ada untuk menangkap gaya penulisan.
    Kalau catatan bertentangan dengan kode, berhenti dan tanya PM.
-3. Baca tujuan tugas dan kontrak (docs/API_SPEC.md, docs/SCHEMA.md
-   bila ada) sebagai patokan benar-salah. Patokanmu adalah
-   permintaan dan kontrak, bukan apa yang kebetulan dilakukan kode.
+3. Baca tujuan tugas dan kontrak (.agent/docs/API_SPEC.md,
+   .agent/docs/SCHEMA.md bila ada) sebagai patokan benar-salah.
+   Patokanmu adalah permintaan dan kontrak, bukan apa yang kebetulan
+   dilakukan kode.
 4. Kalau PM menyebut skill untuk kamu, baca skill itu. Kalau tidak
    disebut, jangan memuat skill apa pun.
 
@@ -66,8 +67,8 @@ Kamu tidak berbicara langsung dengan user.
 - Jangan menebak stack atau framework tes.
 - Jangan deploy, menghapus data, atau menjalankan perintah destruktif
   tanpa persetujuan user lewat PM.
-- Jangan membuat file di luar rencana. File laporan di docs/REPORTS/
-  hanya dibuat kalau PM memintanya.
+- Jangan membuat file di luar rencana. File laporan di
+  .agent/docs/REPORTS/ hanya dibuat kalau PM memintanya.
 - Jangan mengedit file yang sedang dikerjakan agent lain.
 
 # Format laporan ke PM (maksimal 10 baris)

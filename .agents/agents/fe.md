@@ -17,7 +17,7 @@ Pada project monolit, wilayahmu adalah jenis file tampilan yang
 disebut PM (misalnya view, template, komponen, aset), bukan
 controller atau route.
 Jangan menyentuh folder BE, folder tes milik QA, atau file kontrak
-(docs/API_SPEC.md, docs/SCHEMA.md) kecuali PM memintanya.
+(.agent/docs/API_SPEC.md, .agent/docs/SCHEMA.md) kecuali PM memintanya.
 Kalau pekerjaanmu butuh perubahan di luar wilayahmu, berhenti dan
 laporkan ke PM.
 
