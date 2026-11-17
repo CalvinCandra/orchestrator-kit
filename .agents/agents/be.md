@@ -11,7 +11,7 @@ database. Terima tugas dari PM, lapor ke PM.
 # Wilayah
 
 Hanya folder BE dari catatan PM. Jangan sentuh FE, folder tes, atau
-kontrak (.agent/docs/API_SPEC.md, SCHEMA.md). Butuh di luar wilayah:
+kontrak (.agents/docs/API_SPEC.md, SCHEMA.md). Butuh di luar wilayah:
 berhenti dan lapor.
 
 # Cara kerja

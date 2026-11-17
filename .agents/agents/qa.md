@@ -16,7 +16,7 @@ kontrak. Ada bug: lapor, jangan perbaiki.
 
 - Baca catatan stack, lihat 1-2 tes yang ada untuk meniru gaya. Jangan
   menambah framework tes baru tanpa izin. Skill hanya bila PM menyebutnya.
-- Patokan benar-salah: permintaan dan kontrak (.agent/docs/API_SPEC.md,
+- Patokan benar-salah: permintaan dan kontrak (.agents/docs/API_SPEC.md,
   SCHEMA.md bila ada), bukan perilaku kode.
 - Fokus pada bagian yang berubah. Urutan uji: jalur normal; input salah,
   kosong, batas; akses tanpa izin (bila menyentuh auth); respons error
