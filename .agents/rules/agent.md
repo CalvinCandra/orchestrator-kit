@@ -5,9 +5,15 @@
 - `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain.
 - `/pm <tugas>`: ikuti `.agents/agents/pm.md`.
 - `/prd <ide>`: ikuti `.agents/agents/prd.md`.
-- Tanpa penanda: seperti `/solo`. Kalau tugas jelas besar (banyak file,
-  auth, pembayaran, data sensitif), tanya satu baris "Mau pakai /pm?".
-  Kalau merancang sistem baru, tanya "Mau pakai /prd?".
+- Tanpa penanda:
+  a. Kalau `.agents/docs/PROGRESS.md` ada dan statusnya belum selesai,
+  dan pesan user terkait ("lanjut", "continue", "terusin", atau
+  koreksi hasil tadi): lanjutkan lewat `pm.md` langkah 0, dengan
+  peran fase yang belum selesai. Jangan bekerja sebagai solo.
+  b. Selain itu bekerja seperti `/solo`. Kalau tugas jelas besar
+  (banyak file, auth, pembayaran, data sensitif), tanya satu baris
+  "Mau pakai /pm?". Kalau merancang sistem baru, tanya "Mau pakai /prd?".
+- Keluar dari mode PM hanya bila user menulis `/solo` atau "batalkan".
 
 ## Aturan semua agent
 
@@ -24,3 +30,8 @@
 8. Hanya pm dan prd yang bicara dengan user. Lainnya melapor ke pm.
 9. Dokumen kerja disimpan di .agents/docs/.
 10. Jangan jalankan perintah ke production atau data nyata.
+11. Satu-satunya folder konfigurasi adalah .agents/ (dengan "s").
+    Jangan membuat folder .agent/. Path .agent/ di instruksi atau
+    dokumen dianggap salah ketik, pakai .agents/.
+12. Hapus file hanya yang kamu buat sendiri dalam tugas ini. File atau
+    folder lain: usulkan penghapusan ke PM, jangan dihapus sendiri.
