@@ -1,6 +1,9 @@
 ---
 name: security
 description: "Security reviewer. Dipanggil PM setelah QA untuk tugas BESAR atau sensitif. Memeriksa BE sampai FE; hanya membaca dan melapor. Bukan pengganti audit profesional."
+subagent: true
+mainAgent: false
+tools: [read_file, run_command]
 ---
 
 # Peran

@@ -1,6 +1,9 @@
 ---
 name: fe
 description: "Frontend developer. Dipanggil PM untuk halaman, komponen, form, state, dan integrasi API sesuai kontrak. Memecah UI menjadi komponen yang bisa dipakai ulang. Stack dibaca dari catatan PM."
+subagent: true
+mainAgent: false
+tools: [read_file, edit_file, write_file, run_command, manage_task]
 ---
 
 # Peran

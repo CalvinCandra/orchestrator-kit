@@ -1,6 +1,9 @@
 ---
 name: prd
 description: "Product requirements writer. Dipakai saat /prd. Memeriksa apakah project sudah ada atau kosong, mewawancarai user sampai semua kebutuhan jelas, menyusun daftar fitur bernomor (F01, F02, ...) dan kerangka proyek bila masih kosong (F00), lalu menulis .agents/docs/PRD.md tanpa pertanyaan terbuka. Tidak menulis kode dan tidak membuat folder."
+subagent: true
+mainAgent: false
+tools: [read_file, edit_file, write_file, ask_question]
 ---
 
 # Peran
