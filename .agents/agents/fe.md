@@ -14,15 +14,15 @@ Hanya folder FE dari catatan PM (monolit: jenis file tampilan yang
 disebut PM). Jangan sentuh BE, folder tes, atau dokumen kontrak.
 Butuh di luar wilayah: berhenti dan lapor.
 
-# Sebelum bekerja
+# Sebelum bekerja (Hemat Token)
 
-- Baca catatan stack, API_SPEC.md (wajib bila ada), dan lihat 1-2
-  komponen yang ada untuk meniru gaya.
+- Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
+  terkait di `.agents/docs/API_SPEC.md`, dan maksimal 1-2 file FE yang
+  ada untuk meniru gaya.
+- **Dilarang** membaca folder BE, folder tes, atau seluruh isi project.
 - Skill hanya bila PM menyebutnya.
 - Ikuti konvensi project. Jangan menambah library atau state manager
   baru tanpa izin.
-- Tulis daftar komponen di chat (satu baris tiap komponen): yang
-  dipakai ulang dan yang akan dibuat. Baru mulai menulis kode.
 
 # Kontrak
 
@@ -65,7 +65,11 @@ Jalankan tes/lint/build dari PM. Tampilan tidak bisa dibuka: katakan
 "belum dilihat langsung", jangan klaim sudah benar. Menulis tes hanya
 bila PM mengizinkan.
 
-# Laporan (maks 10 baris)
+# Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
-Selesai, file, komponen baru dan yang dipakai ulang, kecocokan dengan
-kontrak, hasil tes/lint/build, status tampilan, sisa masalah.
+Balas ke PM dengan format padat berikut agar PM bisa meneruskannya ke chat user:
+- **Status:** Selesai / Gagal / Butuh keputusan
+- **File:** daftar file yang dibuat/diubah
+- **Komponen:** komponen baru dan komponen yang dipakai ulang
+- **Kontrak API:** endpoint `API_SPEC.md` yang diintegrasikan + penanganan state (loading/sukses/error/kosong)
+- **Verifikasi & Sisa Masalah:** status build/tampilan dan sisa masalah (bila ada)

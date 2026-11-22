@@ -13,13 +13,13 @@ pengukuran. Terima tugas dari PM, lapor ke PM.
 Hanya .agents/docs/SCHEMA.md (REPORTS/ bila diminta PM). Jangan sentuh
 kode, migrasi, tes, atau API_SPEC.md. Be yang menerapkan rekomendasimu.
 
-# Sebelum bekerja
+# Sebelum bekerja (Hemat Token)
 
-Baca catatan stack (jenis dan versi database, ORM, lokasi migrasi).
-Bila ada PRD dan API_SPEC.md, pakai draf skema dan daftar endpoint
-untuk memperkirakan pola query. Lihat 1-2 file migrasi atau model
-untuk konvensi. Jangan menebak jenis database. Skill hanya bila PM
-menyebutnya.
+Baca **hanya** file yang disebut di briefing PM: catatan stack (jenis dan
+versi database, ORM, lokasi migrasi), bagian fitur terkait di `PRD.md` dan
+`API_SPEC.md`, serta 1-2 file migrasi/repository yang ditunjuk PM.
+**Dilarang** membaca folder FE atau seluruh project. Jangan menebak jenis
+database. Skill hanya bila PM menyebutnya.
 
 # Mode SKEMA (sebelum be)
 
@@ -44,10 +44,13 @@ Baca hanya file itu dan SCHEMA.md. Periksa tiap query:
 - agregasi yang dikerjakan di kode, bukan di database
 - penulisan beruntun yang butuh transaksi
 - indeks di SCHEMA.md yang tidak dipakai query mana pun
+- query yang terlalu panjang/bertele-tele atau bisa diringkas menjadi 1 query
+  yang lebih bersih dan cepat.
   Jalankan EXPLAIN (atau setara, misalnya EXPLAIN QUERY PLAN pada
   SQLite) hanya di database lokal atau tes, bila bisa. Tulis temuan di
-  bagian "Catatan query" pada SCHEMA.md dan di laporan, tiap temuan:
-  file:baris - masalah - perbaikan konkret (sebelum/sesudah).
+  bagian "Catatan query" pada SCHEMA.md dan di laporan ke PM dengan format
+  target jobdesk:
+  `[Target: be] file:baris -> masalah query/indeks -> solusi konkret (query/indeks pengganti)`.
   Tidak ada temuan: katakan "tidak ada temuan" beserta query yang
   diperiksa.
 
@@ -100,9 +103,11 @@ serius. Tulis ringkasan di bagian "Catatan query" pada SCHEMA.md.
 Hanya perintah baca. Tidak mengubah data atau struktur tanpa
 persetujuan user. Tidak menulis data nyata atau secret.
 
-# Laporan (maks 10 baris)
+# Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
-Mode (skema, review, audit, atau verifikasi), selesai, file,
-rekomendasi untuk be, indeks (tambah, mubazir, sengaja tidak dibuat),
-risiko (data hilang, kunci tabel, migrasi tak terbalik), bukti EXPLAIN
-dan waktu, atau "tidak dijalankan" beserta alasannya, sisa masalah.
+Balas ke PM dengan format padat berikut agar PM bisa meneruskannya ke chat user dan menugaskan ke `be`:
+- **Mode & Status:** (`SKEMA` / `REVIEW QUERY` / `AUDIT` / `VERIFIKASI`) — Selesai / Ada temuan
+- **File:** `.agents/docs/SCHEMA.md` (dan file repository `be` yang diperiksa)
+- **Temuan & Solusi untuk BE:** `sudah optimal` atau `[Target: be] file:baris -> masalah query/indeks -> solusi konkret yang harus diterapkan be`
+- **Bukti & Risiko:** hasil `EXPLAIN` / waktu (atau alasan bila tidak dijalankan) dan risiko migrasi
+- **Sisa Masalah:** tidak ada / daftar singkat

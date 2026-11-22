@@ -14,10 +14,12 @@ Hanya folder BE dari catatan PM. Jangan sentuh FE, folder tes, atau
 dokumen kontrak (.agents/docs/API_SPEC.md, SCHEMA.md). Butuh di luar
 wilayah: berhenti dan lapor.
 
-# Sebelum bekerja
+# Sebelum bekerja (Hemat Token)
 
-- Baca catatan stack, API_SPEC.md (wajib bila ada), SCHEMA.md, dan
-  lihat 1-2 file BE yang ada untuk meniru gaya.
+- Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
+  terkait di `.agents/docs/API_SPEC.md`, `.agents/docs/SCHEMA.md`, dan
+  maksimal 1-2 file BE yang ada untuk meniru gaya.
+- **Dilarang** membaca seluruh isi repository atau folder FE/tes.
 - Skill hanya bila PM menyebutnya.
 - Ikuti konvensi project. Jangan menambah library atau pola baru tanpa izin.
 
@@ -81,8 +83,11 @@ wilayah: berhenti dan lapor.
 Jalankan tes/lint dari PM. Tidak ada perintah tes: katakan terus
 terang, jangan klaim "berjalan". Menulis tes hanya bila PM mengizinkan.
 
-# Laporan (maks 10 baris)
+# Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
-Selesai, file (per lapisan), kecocokan dengan kontrak, hasil tes/lint,
-query yang ditulis atau diubah (path file, untuk fase review),
-sisa masalah.
+Balas ke PM dengan format padat berikut agar PM bisa meneruskannya ke chat user:
+- **Status:** Selesai / Gagal / Butuh keputusan
+- **File (per lapisan):** daftar file yang dibuat/diubah
+- **Kontrak & Skema:** kecocokan endpoint dengan `API_SPEC.md` & indeks dari `SCHEMA.md`
+- **Query (untuk direview `database`):** path file repository/query yang ditulis/diubah
+- **Verifikasi & Sisa Masalah:** hasil build/lint/tes yang dijalankan dan sisa masalah (bila ada)
