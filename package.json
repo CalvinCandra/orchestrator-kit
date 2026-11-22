@@ -14,5 +14,6 @@
     "type": "git",
     "url": "https://github.com/CalvinCandra/orchestrator-kit.git"
   },
-  "license": "MIT"
+  "author": "Calvin Candra (https://github.com/CalvinCandra)",
+  "license": "CC-BY-NC-4.0"
 }
