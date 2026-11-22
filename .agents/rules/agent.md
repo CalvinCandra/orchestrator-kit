@@ -13,8 +13,12 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
   2. **DILARANG KERAS MENULIS KODE SENDIRI**: Saat berada di mode `/pm`, agen utama (PM) **TIDAK BOLEH** memanggil `write_file` atau `edit_file` pada folder kode aplikasi (wilayah BE, FE, maupun Tes). Wilayah tulis PM **HANYA** `.agents/docs/` (`PROGRESS.md`, `API_SPEC.md`, dan kolom Status di `PRD.md`).
   3. **WAJIB GUNAKAN TOOL `invoke_subagent`**: Semua pembuatan/pengeditan skema, kode BE, kode FE, tes QA, dan audit Security **WAJIB** didelegasikan menggunakan tool `invoke_subagent` (`TypeName: "database"`, `"be"`, `"fe"`, `"qa"`, `"security"`) secara paralel sesuai gelombang di `.agents/agents/pm.md`.
   4. **TUGAS / FITUR BARU = KONFIRMASI DULU**: Meskipun user menulis kata `"oke"` atau `"lanjut"` di pesan pembuka untuk meminta fitur/tugas berikutnya (di mana tugas sebelumnya sudah `SELESAI` di `PROGRESS.md`), PM **WAJIB BERHENTI** di tahap **KONFIRMASI** (tampilkan header PM, sub-agent terpilih, dan tabel gelombang fase, lalu tunggu user membalas `"oke"`).
-  5. **WAJIB TAMPILKAN PESAN SUB-AGENT LANGSUNG SAAT MASUK (DILARANG MENULIS "MENUNGGU LAPORAN...")**:
-     Setiap kali satu sub-agent selesai dan mengirim pesan (`Message from ...`), PM **WAJIB LANGSUNG mencetak kotak `📩 [Laporan <nama-agent> -> PM]`** milik sub-agent itu pada turn tersebut! **DILARANG KERAS** menulis kalimat sela seperti _"Laporan X diterima. Menunggu laporan Y dan Z."_ lalu menunda pencetakan kotak laporan ke akhir fase. Cetak langsung kotak `📩 [Laporan ...]` begitu pesannya tiba, dan perbarui `.agents/docs/PROGRESS.md` dalam format **Tabel Fase** saat gelombang selesai.
+  5. **LOG SUB-AGENT 1 BARIS SAAT BERJALAN & RINGKASAN LENGKAP DI AKHIR (HEMAT TOKEN)**:
+     - Setiap kali sub-agent selesai (`Message from ...`), PM **wajib langsung mencetak 1 baris status padat** pada turn tersebut:
+       - Bila selesai/aman tanpa temuan: `📩 [<nama-agent> -> PM]: Selesai (<jumlah file diubah/diperiksa>, <hasil build/tes/cek singkat>)`
+       - Bila ada bug/temuan/saran pangkas: tambahkan 1 baris temuan: `⚠ Temuan [Target: be/fe]: <lokasi> -> <masalah> -> <solusi>`
+     - **DILARANG** mencetak blok laporan panjang berbaris-baris di tengah fase (agar tidak duplikat dengan Ringkasan Akhir) dan **DILARANG** menulis kalimat sela _"Laporan X diterima, menunggu Y"_.
+     - Setelah semua gelombang selesai, baru tampilkan **Ringkasan Akhir PM** yang lengkap dan perbarui `.agents/docs/PROGRESS.md` dalam format **Tabel Fase**.
 - `/prd <ide>`: baca dan ikuti `.agents/agents/prd.md`.
 - Tanpa penanda:
   a. Kalau `.agents/docs/PROGRESS.md` ada dan statusnya `BERJALAN` (belum selesai),
