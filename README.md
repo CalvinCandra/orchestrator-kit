@@ -1,105 +1,64 @@
 # Orchestrator Kit
 
-Kumpulan agent AI (PM, BE, FE, Database, QA, Security) yang bisa disalin
-ke project mana saja. Dibuat untuk Antigravity. Tidak terikat framework:
-Laravel, Express, Vue, dan lainnya dibaca dari project, bukan ditulis di prompt.
+Kumpulan agent AI paralel (`prd`, `pm`, `be`, `fe`, `database`, `qa`, `security`) beserta kumpulan skill pilihan (`ponytail`, `frontend-design`, `humanizer`, `security-audit`) untuk **Google Antigravity**. Tidak terikat bahasa/framework: Laravel, NestJS, Express, React, Vue, Python, Go, dan lainnya dideteksi langsung dari project atau dirancang lewat `/prd`.
 
-## Cara kerja singkat
+## Instalasi 1 Baris (via `npx`)
 
-Kamu tetap mengetik di Antigravity seperti biasa. Awal pesanmu menentukan
-siapa yang bekerja:
+Buka terminal di dalam folder project tujuanmu (boleh **folder baru yang masih kosong** maupun **project yang sudah berjalan**), lalu jalankan:
 
-| Kamu tulis      | Yang terjadi                                                                        |
-| --------------- | ----------------------------------------------------------------------------------- |
-| `/solo <tugas>` | Antigravity mengerjakan langsung. Tanpa PM, tanpa agent lain.                       |
-| `/pm <tugas>`   | PM muncul: deteksi stack, wawancara bila ragu, lalu membagi tugas ke agent.         |
-| (tanpa penanda) | Sama dengan `/solo`. Kalau tugasnya jelas besar, ia bertanya dulu: "mau pakai /pm?" |
-
-Kenapa ada penanda: setiap agent yang dipanggil memakan token dan limit.
-Tugas kecil tidak perlu PM.
-
-## Isi kit
-
-```
-orchestrator-kit/
-├─ AGENTS.md              aturan orkestrasi (penanda + aturan semua agent)
-├─ .agent/
-│  ├─ agents/
-│  │  ├─ pm.md            memecah tugas, mewawancarai, melapor ke kamu
-│  │  ├─ be.md            REST API, logika bisnis
-│  │  ├─ fe.md            halaman, komponen, pemanggilan API
-│  │  ├─ database.md      skema, indeks, optimasi query
-│  │  ├─ qa.md            menulis dan menjalankan tes, mencari bug
-│  │  └─ security.md      pemeriksaan keamanan BE sampai FE
-│  └─ skill/              skill opsional (BE, FE, dll.)
+```bash
+npx github:CalvinCandra/orchestrator-kit
 ```
 
-## Pemasangan
+_(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan `npx orchestrator-kit`)_.
 
-1. Salin `AGENTS.md` dan folder `.agent/` ke root project tujuan.
-   Contoh PowerShell:
-   ```
-   Copy-Item orchestrator-kit\AGENTS.md C:\path\project\
-   Copy-Item -Recurse orchestrator-kit\.agent C:\path\project\.agent
-   ```
-2. Buka project itu di Antigravity.
-3. Ketik tugas dengan penanda, misalnya `/pm buat fitur login`.
+### Bagaimana Cara Kerjanya?
 
-Tidak ada konfigurasi lain. Stack tidak perlu ditulis, PM mendeteksinya.
+1. `npx` mengunduh paket dari GitHub ke folder cache sementara npm (tidak mengotori folder projectmu dengan `package.json`, `bin/`, atau `README.md` root).
+2. Script installer (`bin/install.mjs`) otomatis berjalan dan **hanya menyalin folder `.agents/`** (`agents/`, `rules/`, `skills/`, dan `docs/`) ke folder project tempat terminalmu berada.
+3. **Aman untuk Update**: Jika dijalankan ulang pada project yang sudah memiliki `.agents/docs/PRD.md`, `API_SPEC.md`, `SCHEMA.md`, atau `PROGRESS.md`, installer hanya akan memperbarui `agents/`, `rules/`, dan `skills/` **tanpa menimpa dokumen kerja di `.agents/docs/`**.
 
-## Peran dan wilayah
+---
 
-| Agent    | Tugas                                                                | Boleh menulis    | Catatan                                                   |
-| -------- | -------------------------------------------------------------------- | ---------------- | --------------------------------------------------------- |
-| pm       | Deteksi, wawancara, delegasi, laporan                                | `docs/`          | Tidak menulis kode. Satu-satunya yang bicara dengan kamu. |
-| be       | Endpoint, logika bisnis, menerapkan migrasi dan rekomendasi query    | folder BE        | Tidak menyentuh FE                                        |
-| fe       | Halaman, komponen, integrasi API                                     | folder FE        | Tidak menyentuh BE                                        |
-| database | Skema, indeks (satu kolom, gabungan, pencarian teks), analisis query | `docs/SCHEMA.md` | Hanya merekomendasikan, tidak mengedit migrasi            |
-| qa       | Tes dan pencarian bug                                                | folder tes       | Tidak mengedit kode aplikasi                              |
-| security | Auth, validasi, injeksi, XSS, secret, dependency                     | tidak ada        | Hanya membaca dan melapor                                 |
+## Cara Pakai di Chat Antigravity
 
-Prinsip: satu folder satu pemilik, dan tidak ada dua agent yang mengedit
-file yang sama bersamaan.
+| Kamu tulis di chat  | Yang terjadi                                                                                                                                                                           |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/prd <ide>`        | Agent `prd` memeriksa kondisi project (kosong/sudah ada), mewawancarai kamu sampai tuntas, lalu menulis `.agents/docs/PRD.md`.                                                         |
+| `/pm <fitur/tugas>` | Agent `pm` mendeteksi stack, memilih sub-agent & skill, meminta konfirmasi `"oke"`, lalu menjalankan sub-agent dalam **gelombang paralel** (`database`, `be`, `fe`, `qa`, `security`). |
+| `/solo <tugas>`     | Antigravity mengerjakan langsung sendiri tanpa PM dan tanpa sub-agent lain (cocok untuk tugas kecil/cepat).                                                                            |
 
-## Alur `/pm`
+---
 
+## Struktur `.agents/` yang Terpasang
+
+```text
+.agents/
+├── agents/
+│   ├── prd.md            # Menulis PRD.md (F00, F01, F02, ...) & membantu memilih tech stack
+│   ├── pm.md             # Mengatur gelombang paralel sub-agent, kontrak API, & PROGRESS.md
+│   ├── be.md             # REST API, logika bisnis, struktur berlapis, & query berparameter
+│   ├── fe.md             # Halaman, komponen modular, state, & integrasi API
+│   ├── database.md       # Skema, strategi indeks, EXPLAIN query plan, & audit performa
+│   ├── qa.md             # Pengujian di dalam sandbox + review kualitas & pemangkasan kode
+│   └── security.md       # Audit keamanan BE sampai FE + rekomendasi perbaikan konkret
+├── rules/
+│   └── agent.md          # Aturan utama orkestrasi (trigger: always_on)
+├── skills/
+│   ├── ponytail/         # Pragmatic senior dev (YAGNI, reuse, native-first, kode ringkas)
+│   ├── frontend-design/  # Anti AI-slop, desain visual berkarakter, & hierarki tipografi
+│   ├── humanizer/        # Menghilangkan kalimat kaku/robotik khas AI pada teks UI & dokumen
+│   └── security-audit/   # Metodologi audit keamanan berbasis bukti (Source -> Validation -> Sink)
+└── docs/
+    └── README.md         # Tempat menyimpan PRD.md, API_SPEC.md, SCHEMA.md, & PROGRESS.md
 ```
-1. DETEKSI      baca file kunci project (composer.json, package.json, dll.)
-2. WAWANCARA    hanya kalau ragu: satu putaran, maksimal 5 pertanyaan,
-                setiap pertanyaan ada rekomendasi
-3. KONFIRMASI   PM menampilkan stack, skala, urutan kerja, skill -> kamu bilang "oke"
-4. SKALA        KECIL (1 agent), SEDANG (1-3 agent), BESAR (semua yang relevan + security)
-5. DELEGASI     agent diberi tujuan + catatan stack + path file (bukan isi)
-6. TEMUAN       QA/security melapor ke PM, PM meneruskan ke be/fe
-7. LAPOR        ringkasan maksimal 10 baris
-```
 
-Kalau BE dan FE akan bekerja paralel, PM menulis kontrak
-(`docs/API_SPEC.md`, `docs/SCHEMA.md`) dulu dan meminta persetujuanmu.
+---
 
-## Skill
+## Gelombang Eksekusi Paralel pada `/pm`
 
-PM hanya membaca nama dan deskripsi skill, lalu menyarankannya saat
-konfirmasi. Skill baru dipakai setelah kamu setujui, maksimal 2 per agent.
-Taruh skill di `.agent/skill/`.
-
-## Aturan untuk semua agent
-
-- Tidak menebak teknologi. Kalau catatan stack bertentangan dengan kode, berhenti dan tanya.
-- Tidak deploy, menghapus data, atau perintah destruktif tanpa persetujuanmu.
-- Tidak membuat file di luar rencana.
-- Laporan maksimal 10 baris, memisahkan fakta dari dugaan.
-
-## Keterbatasan
-
-- QA dan Security adalah pemeriksaan dasar, bukan pengganti tes
-  menyeluruh atau audit keamanan profesional.
-- Versi gratis mudah kena limit. Pakai `/solo` untuk tugas kecil.
-- Kualitas hasil bergantung pada model yang kamu pakai.
-
-## Uji pertama yang disarankan
-
-Coba di folder percobaan, bukan project penting:
-
-1. `/solo jelaskan project ini` -> harus dijawab langsung tanpa PM.
-2. `/pm tambah endpoint sederhana` -> PM harus mendeteksi stack, bertanya bila ragu, lalu meminta "oke".
+1. **KONFIRMASI**: PM menampilkan stack, sub-agent terpilih, rencana gelombang fase, dan rekomendasi skill -> berhenti menunggu `"oke"` darimu.
+2. **FASE 1 [Kontrak & Skema]**: PM menyusun `.agents/docs/API_SPEC.md` bersama `database` yang merancang `.agents/docs/SCHEMA.md`.
+3. **FASE 2 [Gelombang Kode — Paralel]**: Sub-agent `be` dan `fe` berjalan bersamaan di wilayah foldernya masing-masing.
+4. **FASE 3 [Gelombang Audit, Code Review & Uji — Paralel]**: Sub-agent `database` (review efisiensi query), `qa` (eksekusi tes + review pemangkasan kode), dan `security` (audit keamanan + solusi) berjalan bersamaan.
+5. **FASE 4 [Perbaikan Sesuai Jobdesk — Opsional]**: Hanya berjalan 1 putaran bila Fase 3 menemukan bug, kode yang terlalu panjang, atau celah keamanan (`[Target: be]` dikirim ke `be`, `[Target: fe]` dikirim ke `fe`).
