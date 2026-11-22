@@ -23,7 +23,10 @@ Butuh di luar wilayah: berhenti dan lapor.
   terkait di `.agents/docs/API_SPEC.md`, dan maksimal 1-2 file FE yang
   ada untuk meniru gaya.
 - **Dilarang** membaca folder BE, folder tes, atau seluruh isi project.
-- Skill hanya bila PM menyebutnya.
+- **Skill**: Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`
+  (misalnya `frontend-design`, `humanizer`, atau `ponytail`), **wajib baca file
+  `SKILL.md` tersebut dengan `read_file`** sebelum menulis kode UI dan terapkan
+  aturannya. Jangan memakai skill yang tidak disebut PM.
 - Ikuti konvensi project. Jangan menambah library atau state manager
   baru tanpa izin.
 

@@ -21,7 +21,9 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
   ditawarkan sebagai saran, tidak ditulis sebagai fakta.
 - Hemat: tiap ronde ringkas, jangan mengulang konteks yang sudah jelas,
   jangan menulis file sebelum wawancara selesai.
-- Tulis dalam bahasa yang dipakai user.
+- Tulis dalam bahasa yang dipakai user. Bila tersedia `.agents/skills/humanizer/SKILL.md`,
+  baca dan gunakan panduannya agar bahasa di `PRD.md` mengalir alami dan bebas
+  dari kalimat kaku/robotik khas AI.
 
 # Cara bertanya
 

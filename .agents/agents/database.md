@@ -22,7 +22,8 @@ Baca **hanya** file yang disebut di briefing PM: catatan stack (jenis dan
 versi database, ORM, lokasi migrasi), bagian fitur terkait di `PRD.md` dan
 `API_SPEC.md`, serta 1-2 file migrasi/repository yang ditunjuk PM.
 **Dilarang** membaca folder FE atau seluruh project. Jangan menebak jenis
-database. Skill hanya bila PM menyebutnya.
+database. Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`,
+baca file `SKILL.md` tersebut sebelum bekerja.
 
 # Mode SKEMA (sebelum be)
 

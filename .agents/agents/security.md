@@ -20,7 +20,9 @@ diminta PM). Perbaikan oleh be/fe lewat PM.
 - Baca **hanya** catatan stack, `.agents/docs/API_SPEC.md`, dan daftar file
   BE serta FE yang baru dibuat atau diubah pada fitur ini (sesuai daftar
   path dari PM). Jangan memindai seluruh project jika tidak diminta.
-- Skill hanya bila PM menyebutnya.
+- **Skill**: Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`
+  (misalnya `.agents/skills/security-audit/SKILL.md`), **wajib baca file
+  `SKILL.md` tersebut dengan `read_file`** sebelum mengaudit kode.
 - Periksa berurutan pada file fitur tersebut: autentikasi dan sesi;
   otorisasi (akses data milik sendiri, endpoint tanpa cek peran); validasi
   input server; injeksi (parameterized query SQL, shell, path dari input);

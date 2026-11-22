@@ -124,7 +124,13 @@ Stack ditentukan dari project/PRD, tidak diasumsikan.
    - Catat: struktur, stack BE/FE, database (jenis, versi, lokasi), perintah
      build/tes/run, pembagian wilayah folder (`BE`, `FE`, `Tes`, `Data`),
      dan apakah ada REST API antara BE dan FE.
-   - Skill: cek nama dan deskripsi di `.agents/skills/` (bila ada).
+   - Skill: cek nama dan deskripsi di `.agents/skills/*/SKILL.md` (bila ada).
+     Saat KONFIRMASI, sarankan skill yang cocok per sub-agent (maksimal 2 skill
+     per sub-agent, misal `be` -> `ponytail`; `fe` -> `frontend-design`,
+     `humanizer`, atau `ponytail`; `qa` -> `ponytail`; `security` ->
+     `security-audit`). Setelah user menjawab `"oke"`, sertakan path file
+     `.agents/skills/<nama-skill>/SKILL.md` di briefing `invoke_subagent`
+     masing-masing sub-agent.
 
 2. **WAWANCARA (hanya bila belum jelas dari PRD/kode)**
    Wajib bila: stack tidak terdeteksi; project kosong tanpa PRD; permintaan

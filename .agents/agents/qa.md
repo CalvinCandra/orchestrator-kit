@@ -20,7 +20,9 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
 - Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
   fitur terkait di `PRD.md`, `.agents/docs/API_SPEC.md`, dan 1-2 file tes
   yang ada untuk meniru gaya. Jangan membaca seluruh codebase.
-- Jangan menambah framework tes baru tanpa izin. Skill hanya bila PM menyebutnya.
+- Jangan menambah framework tes baru tanpa izin. Bila PM menunjuk skill dari
+  `.agents/skills/<nama-skill>/SKILL.md` (misalnya `ponytail`), baca file
+  `SKILL.md` tersebut sebelum memeriksa kode.
 - Patokan benar-salah: permintaan, PRD (kriteria selesai fitur), dan
   kontrak (`.agents/docs/API_SPEC.md`, `SCHEMA.md` bila ada), bukan
   perilaku kode.
