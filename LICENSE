@@ -1,0 +1,55 @@
+# Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+
+Copyright (c) 2026 Calvin Candra (https://github.com/CalvinCandra)
+
+---
+
+## Ringkasan Lisensi (Bahasa Indonesia)
+
+Proyek **Orchestrator Kit** (mencakup konfigurasi `.agents/agents/`, `.agents/rules/`, `.agents/docs/`, serta skrip installer `bin/install.mjs`) dibagikan secara **GRATIS** di bawah lisensi **CC BY-NC 4.0**:
+
+1. **Bebas Dipakai & Dimodifikasi (Free to Use & Adapt):**
+   Anda bebas menyalin, memasang (`npx github:CalvinCandra/orchestrator-kit`), dan memodifikasi kit ini untuk keperluan belajar, eksperimen, maupun membantu pengerjaan proyek perangkat lunak Anda.
+2. **Wajib Mencantumkan Atribusi (Attribution):**
+   Anda wajib mempertahankan nama pembuat asli (**Calvin Candra**) dan tautan ke repositori asli apabila membagikan ulang atau membuat turunan dari proyek ini.
+3. **DILARANG KERAS DIPERJUALBELIKAN (Strictly Non-Commercial):**
+   Anda **DILARANG** menjual, menyewakan, membungkus ulang sebagai produk/template/kursus berbayar, atau mengambil keuntungan komersial langsung dari penjualan **Orchestrator Kit** ini tanpa izin tertulis dari pemilik hak cipta (**Calvin Candra**).
+
+Teks hukum lengkap Creative Commons Attribution-NonCommercial 4.0 International dapat dibaca di:
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+---
+
+## Summary of License (English)
+
+You are free to:
+- **Share** — copy and redistribute the material in any medium or format.
+- **Adapt** — remix, transform, and build upon the material.
+
+Under the following terms:
+- **Attribution** — You must give appropriate credit to **Calvin Candra**, provide a link to the license, and indicate if changes were made.
+- **NonCommercial** — You **may not** use, redistribute, or repackage this kit for commercial sale or monetary compensation.
+
+Full Legal Code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+---
+
+## Third-Party Notices & Attributions (`.agents/skills/`)
+
+Folder `.agents/skills/` di dalam repositori ini menyertakan skill open-source pihak ketiga yang hak cipta dan lisensinya tetap dimiliki oleh masing-masing pembuat aslinya:
+
+1. **`ponytail` (`.agents/skills/ponytail/SKILL.md`)**
+   - **Author / Source:** Dietrich Gebert — https://github.com/DietrichGebert/ponytail
+   - **License:** MIT License
+
+2. **`frontend-design` (`.agents/skills/frontend-design/SKILL.md`)**
+   - **Author / Source:** Anthropic, PBC — https://github.com/anthropics/skills/tree/main/skills/frontend-design
+   - **License:** Source-Available / Complete terms as specified in Anthropic's `anthropics/skills` repository (`LICENSE.txt`).
+
+3. **`humanizer` (`.agents/skills/humanizer/SKILL.md`)**
+   - **Author / Source:** blader — https://github.com/blader/humanizer
+   - **License:** MIT License
+
+4. **`security-audit` (`.agents/skills/security-audit/SKILL.md`)**
+   - **Author / Source:** zrack — https://github.com/zrack/security-audit-skill
+   - **License:** MIT License

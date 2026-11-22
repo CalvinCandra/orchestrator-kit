@@ -62,3 +62,24 @@ _(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan 
 3. **FASE 2 [Gelombang Kode — Paralel]**: Sub-agent `be` dan `fe` berjalan bersamaan di wilayah foldernya masing-masing.
 4. **FASE 3 [Gelombang Audit, Code Review & Uji — Paralel]**: Sub-agent `database` (review efisiensi query), `qa` (eksekusi tes + review pemangkasan kode), dan `security` (audit keamanan + solusi) berjalan bersamaan.
 5. **FASE 4 [Perbaikan Sesuai Jobdesk — Opsional]**: Hanya berjalan 1 putaran bila Fase 3 menemukan bug, kode yang terlalu panjang, atau celah keamanan (`[Target: be]` dikirim ke `be`, `[Target: fe]` dikirim ke `fe`).
+
+---
+
+## Lisensi & Atribusi (Gratis — Dilarang Diperjualbelikan)
+
+Copyright (c) 2026 **Calvin Candra**.
+
+**Orchestrator Kit** dilisensikan di bawah **[CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial 4.0 International)](./LICENSE)**:
+
+- ✅ **Gratis dipakai & dimodifikasi** untuk keperluan belajar, pribadi, maupun membantu pengerjaan proyek Anda.
+- ✅ **Wajib mencantumkan atribusi** nama pembuat asli (**Calvin Candra**).
+- ❌ **DILARANG KERAS diperjualbelikan** (dilarang menjual ulang kit ini, membungkusnya menjadi produk/template berbayar, atau memonetisasinya secara komersial).
+
+### Atribusi Skill Pihak Ketiga (`.agents/skills/`)
+
+Kit ini bundel dengan 4 skill komunitas open-source yang hak cipta dan lisensinya dimiliki oleh masing-masing pembuat aslinya (detail lengkap di [LICENSE](./LICENSE)):
+
+- [`ponytail`](https://github.com/DietrichGebert/ponytail) oleh Dietrich Gebert (MIT)
+- [`frontend-design`](https://github.com/anthropics/skills/tree/main/skills/frontend-design) oleh Anthropic (`anthropics/skills`)
+- [`humanizer`](https://github.com/blader/humanizer) oleh blader (MIT)
+- [`security-audit`](https://github.com/zrack/security-audit-skill) oleh zrack (MIT)
