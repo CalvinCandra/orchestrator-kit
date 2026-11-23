@@ -37,21 +37,21 @@ wilayah: berhenti dan lapor.
 - Sebelum selesai, cocokkan tiap endpoint dengan kontrak dan tulis
   hasilnya di laporan (cocok / menyimpang + alasan).
 
-# Struktur folder (wajib rapi)
+# Arsitektur OOP & Struktur Folder Berlapis (Wajib Rapi)
 
-- Ikuti struktur yang sudah ada. Bila belum ada konvensi, pakai pola
-  berlapis (nama menyesuaikan stack): routes (tipis, hanya
-  mendaftarkan) -> controllers/handlers (baca request, kirim respons)
-  -> services (logika bisnis) -> repositories atau db (semua query)
-  -> middleware, config, utils.
-- Route dan controller tidak berisi query atau logika bisnis.
-- Satu file satu tanggung jawab. File lebih dari kira-kira 200 baris
-  dipecah.
+- **Terapkan Prinsip OOP (Object-Oriented Programming) & Separation of Concerns**:
+  Gunakan pendekatan berbasis Class / Objek terenkapsulasi, Dependency Injection,
+  dan tanggung jawab tunggal (*Single Responsibility Principle*) sesuai bahasa/stack project.
+- **Lapisan Wajib BE (menyesuaikan konvensi framework)**:
+  1. **`routes/` (atau Module/Router)**: Tipis, hanya mendaftarkan endpoint/URL path dan menghubungkannya ke controller (pada framework berbasis dekorator seperti NestJS, diwakili oleh `module` + dekorator route; pada Express/Laravel/FastAPI/Go wajib di folder `routes/`).
+  2. **`controllers/`**: Hanya membaca HTTP request, memvalidasi input, memanggil `service`, dan mengirim HTTP response/view. **Dilarang keras** menaruh query database atau logika bisnis di controller.
+  3. **`services/`**: Class/modul logika bisnis, perhitungan domain, dan orkestrasi transaksi.
+  4. **`repositories/` (atau `models/` / `db/`)**: Class akses data tempat seluruh query database berparameter berada.
+  5. **`views/` (atau `dto/` / `resources/` / `presenters/`)**: Bila backend merender tampilan server-side (MVC), wajib di folder `views/`; bila backend berupa REST API, gunakan folder/file `dto/` atau `resources/` untuk kontrak struktur input/output.
+  6. **Lapisan Pendukung (dikondisikan sesuai kebutuhan)**: `middleware/`, `config/`, `utils/`, `types/`.
+- Satu file satu tanggung jawab (satu Class utama per file). File lebih dari kira-kira 200 baris wajib dipecah.
 - Tanpa file mati, duplikat, atau folder kosong. Penamaan konsisten.
-- Tata sebelum selesai: daftar file yang dibuat atau dipindah, pastikan
-  masing-masing di lapisan yang benar, hapus hanya yang kamu buat
-  sendiri dan tidak terpakai. File lama yang tampak mati: usulkan ke
-  PM, jangan dihapus.
+- Tata sebelum selesai: daftar file yang dibuat atau dipindah per lapisan, hapus hanya file yang kamu buat sendiri dan tidak terpakai. File lama yang tampak mati: usulkan ke PM, jangan dihapus sendiri.
 
 # Query
 

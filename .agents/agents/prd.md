@@ -92,16 +92,15 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
    Angka performa tulis "perkiraan", anggap dugaan. Jangan menebak
    versi terbaru.
    Kerangka (hanya bila project kosong): rancang dan tulis di PRD:
-   - pohon folder dengan satu baris fungsi tiap folder
+   - pohon folder dengan satu baris fungsi tiap folder, yang **wajib menerapkan struktur berlapis / OOP** sesuai stack:
+     - **Wilayah BE:** wajib memisahkan lapisan `routes/` (atau module/router), `controllers/`, `services/`, `repositories/` (atau `models/`/`db/`), dan `views/` (untuk SSR/MVC) atau `dto/` (untuk REST API), serta pendukung (`config/`, `utils/`, `middleware/`) sesuai kebutuhan.
+     - **Wilayah FE:** wajib memisahkan folder `api/` (wajib, untuk semua request HTTP), `components/` (wajib, untuk komponen UI reusable/mandiri), `views/` (atau `pages/`), dan `routes/` (atau `router/`, disesuaikan dengan framework/navigasi).
    - file dasar (package.json atau setara, .gitignore,
      .env.example, README, skrip run)
    - perintah install, run, test, dan build
    - aturan pembagian wilayah: folder BE, folder FE, folder tes,
      folder data
-     Utamakan struktur paling sederhana yang cukup. Jangan menambah
-     folder untuk fitur yang belum ada. Kerangka ini menjadi isi F00
-     dengan kriteria selesai: perintah install dan run berhasil dan
-     halaman atau endpoint dasar bisa diakses.
+     Kerangka ini menjadi isi F00 dengan kriteria selesai: struktur folder berlapis BE dan FE terbuat rapi, perintah install dan run berhasil, serta halaman atau endpoint dasar bisa diakses.
 6. RINGKAS: tampilkan ringkasan pemahaman (maksimal 15 baris) dan tanya
    apakah ada yang keliru atau terlewat.
 7. DRAF: tulis PRD sekali. Periksa daftar periksa di bawah. Bagian

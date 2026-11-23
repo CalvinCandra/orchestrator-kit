@@ -39,9 +39,9 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
   2. **Duplikasi & Kode Bertele-tele**: Logika/komponen yang berulang dan bisa
      dipangkas menjadi fungsi/komponen reusable, atau dead code (variabel/fungsi/file
      tidak terpakai).
-  3. **Pelanggaran Jobdesk Lapisan**: Query SQL yang nyasar di `controller`/`route`
-     (wajib di `repository`), atau pemanggilan `fetch`/API langsung di komponen UI
-     (wajib di lapisan `api`/`services`).
+  3. **Pelanggaran Arsitektur OOP & Struktur Folder Lapisan**:
+     - **Di BE:** Pastikan pemisahan `routes` (atau module), `controllers`, `services`, `repositories`, dan `views`/`dto` terjaga (tidak boleh ada query SQL di `controller`/`route` atau logika bisnis menumpuk di `controller`).
+     - **Di FE:** Pastikan folder wajib `api/` (tempat semua pemanggilan HTTP `GET`/`POST`/`PUT`/`DELETE`) dan `components/` (serta `views/` dan `routes/` sesuai framework) sudah terpisah rapi. Laporkan bila ada `fetch`/API langsung di dalam komponen/view atau semua script ditumpuk di satu folder rata tanpa folder `api/` dan `components/`.
   4. **Wajib beri solusi + target jobdesk**: Setiap temuan kualitas kode maupun
      bug wajib ditulis dengan format:
      `[Target: be/fe] [bug/pangkas] file:baris -> masalah -> solusi konkret`
