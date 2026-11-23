@@ -20,9 +20,10 @@ wilayah: berhenti dan lapor.
 # Sebelum bekerja (Hemat Token)
 
 - Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
-  terkait di `.agents/docs/API_SPEC.md`, `.agents/docs/SCHEMA.md`, dan
-  maksimal 1-2 file BE yang ada untuk meniru gaya.
-- **Dilarang** membaca seluruh isi repository atau folder FE/tes.
+  terkait di `.agents/docs/API_SPEC.md`, `.agents/docs/SCHEMA.md`,
+  `.agents/docs/PROJECT_MAP.md` (bila ada), dan maksimal 1-2 file BE contoh.
+- **Dilarang** melakukan `find`/`list_dir` ke root repository, membaca
+  seluruh isi repository, atau membaca folder FE/tes.
 - **Skill**: Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`
   (misalnya `.agents/skills/ponytail/SKILL.md`), **wajib baca file `SKILL.md`
   tersebut dengan `read_file`** sebelum menulis kode dan terapkan aturannya.
@@ -86,8 +87,13 @@ wilayah: berhenti dan lapor.
 
 # Verifikasi
 
-Jalankan tes/lint dari PM. Tidak ada perintah tes: katakan terus
-terang, jangan klaim "berjalan". Menulis tes hanya bila PM mengizinkan.
+Fokus penuh ke implementasi BE: cukup jalankan cek sintaks, typecheck,
+compile, atau lint ringan yang diminta PM (misal `php -l`, `tsc --noEmit`,
+`go build`). **Dilarang** menulis file tes atau menjalankan unit/feature/e2e
+test suite (`php artisan test`, `phpunit`, `jest`, `vitest`) — seluruh
+pengujian adalah tugas `qa` (kecuali di `# Mode OPTIMASI` untuk memastikan
+hasil query identik). Tidak ada perintah cek sintaks/build: katakan terus
+terang, jangan klaim "berjalan".
 
 # Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
