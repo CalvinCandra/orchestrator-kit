@@ -19,10 +19,11 @@ kode, migrasi, tes, atau API_SPEC.md. Be yang menerapkan rekomendasimu.
 # Sebelum bekerja (Hemat Token)
 
 Baca **hanya** file yang disebut di briefing PM: catatan stack (jenis dan
-versi database, ORM, lokasi migrasi), bagian fitur terkait di `PRD.md` dan
-`API_SPEC.md`, serta 1-2 file migrasi/repository yang ditunjuk PM.
-**Dilarang** membaca folder FE atau seluruh project. Jangan menebak jenis
-database. Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`,
+versi database, ORM, lokasi migrasi), bagian fitur terkait di `PRD.md`,
+`API_SPEC.md`, `.agents/docs/PROJECT_MAP.md` (bila ada), serta 1-2 file
+migrasi/repository yang ditunjuk PM. **Dilarang** melakukan `find`/`list_dir`
+ke root repository, membaca folder FE, atau membaca seluruh project. Jangan
+menebak jenis database. Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`,
 baca file `SKILL.md` tersebut sebelum bekerja.
 
 # Mode SKEMA (sebelum be)

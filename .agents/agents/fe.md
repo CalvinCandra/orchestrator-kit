@@ -20,9 +20,12 @@ Butuh di luar wilayah: berhenti dan lapor.
 # Sebelum bekerja (Hemat Token)
 
 - Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
-  terkait di `.agents/docs/API_SPEC.md`, dan maksimal 1-2 file FE yang
-  ada untuk meniru gaya.
-- **Dilarang** membaca folder BE, folder tes, atau seluruh isi project.
+  terkait di `.agents/docs/API_SPEC.md`, `.agents/docs/PROJECT_MAP.md` (bila ada),
+  dan maksimal 1-2 file FE contoh.
+- **Dilarang** melakukan `find`/`list_dir` ke root repository, atau membaca
+  folder BE, folder tes, maupun seluruh isi project.
+- Fokus implementasi FE: cukup cek sintaks/typecheck/build ringan (dilarang
+  menulis atau menjalankan unit/E2E test).
 - **Skill**: Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`
   (misalnya `frontend-design`, `humanizer`, atau `ponytail`), **wajib baca file
   `SKILL.md` tersebut dengan `read_file`** sebelum menulis kode UI dan terapkan

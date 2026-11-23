@@ -10,7 +10,7 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
 - `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain.
 - `/pm <tugas>`: **AKTIFKAN MODE PM (MULTI-AGENT)**.
   1. **WAJIB BACA `.agents/agents/pm.md`** dengan `read_file` sebelum mengambil tindakan apa pun (terutama saat memulai fitur/tugas baru atau bila aturan diperbarui). Jangan mengandalkan ingatan dari chat sebelumnya!
-  2. **DILARANG KERAS MENULIS KODE SENDIRI**: Saat berada di mode `/pm`, agen utama (PM) **TIDAK BOLEH** memanggil `write_file` atau `edit_file` pada folder kode aplikasi (wilayah BE, FE, maupun Tes). Wilayah tulis PM **HANYA** `.agents/docs/` (`PROGRESS.md`, `API_SPEC.md`, dan kolom Status di `PRD.md`).
+  2. **DILARANG KERAS MENULIS KODE SENDIRI**: Saat berada di mode `/pm`, agen utama (PM) **TIDAK BOLEH** memanggil `write_file` atau `edit_file` pada folder kode aplikasi (wilayah BE, FE, maupun Tes). Wilayah tulis PM **HANYA** `.agents/docs/` (`PROGRESS.md`, `API_SPEC.md`, `PROJECT_MAP.md`, dan kolom Status di `PRD.md`).
   3. **WAJIB GUNAKAN TOOL `invoke_subagent`**: Semua pembuatan/pengeditan skema, kode BE, kode FE, tes QA, dan audit Security **WAJIB** didelegasikan menggunakan tool `invoke_subagent` (`TypeName: "database"`, `"be"`, `"fe"`, `"qa"`, `"security"`) secara paralel sesuai gelombang di `.agents/agents/pm.md`.
   4. **TUGAS / FITUR BARU = KONFIRMASI DULU**: Meskipun user menulis kata `"oke"` atau `"lanjut"` di pesan pembuka untuk meminta fitur/tugas berikutnya (di mana tugas sebelumnya sudah `SELESAI` di `PROGRESS.md`), PM **WAJIB BERHENTI** di tahap **KONFIRMASI** (tampilkan header PM, sub-agent terpilih, dan tabel gelombang fase, lalu tunggu user membalas `"oke"`).
   5. **LOG SUB-AGENT 1 BARIS SAAT BERJALAN & RINGKASAN LENGKAP DI AKHIR (HEMAT TOKEN)**:
@@ -37,9 +37,9 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
    cocokkan dengan kode. Kalau bertentangan, berhenti dan tanya.
 2. Satu wilayah satu pemilik. Jangan edit file wilayah agent lain atau
    file yang sedang dikerjakan agent lain.
-3. Hemat token: Terima path file spesifik dari PM, bukan isi. Baca hanya
-   file yang disebut di prompt PM; dilarang melakukan eksplorasi seluruh
-   project.
+3. Hemat token: Terima path file spesifik dari PM atau `.agents/docs/PROJECT_MAP.md`,
+   bukan isi. Baca hanya file yang disebut di prompt PM; dilarang melakukan
+   `find`/`list_dir` ke root repository atau eksplorasi seluruh project.
 4. Laporan ke PM maksimal 6 baris, padat tanpa blok kode panjang:
    `Status | File diubah/dibuat | Hasil/Temuan + Solusi | Sisa masalah`.
    Pisahkan fakta dari dugaan.
