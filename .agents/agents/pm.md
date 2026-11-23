@@ -184,6 +184,8 @@ Stack ditentukan dari project/PRD, tidak diasumsikan.
    - Catatan stack & pembagian wilayah folder (`BE`, `FE`, `Tes`, `Data`)
    - Rencana Gelombang/Fase beserta sub-agent di tiap fase (tandai paralel hanya bila >1 sub-agent di fase tersebut)
    - Skill yang disarankan (atau `tanpa skill`)
+   - Jika `Skala: KECIL` (1–3 file / bugfix ringan), tambahkan 1 baris saran:
+     `💡 Tugas ini skala KECIL; ketik /solo jika ingin lebih hemat (dikerjakan & dites langsung 1 agent), atau balas "oke" untuk tetap lanjut /pm.`
      **Berhenti dan tunggu `"oke"` dari user.** Jangan mengubah file apa pun
      sebelum user menjawab `"oke"`. Setelah `"oke"`, buat/perbarui `PROGRESS.md`.
 

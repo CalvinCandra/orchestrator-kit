@@ -7,7 +7,10 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
 
 ## Penanda (awal pesan user)
 
-- `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain.
+- `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain. Jika tugas
+  ternyata berskala besar (menyentuh banyak file/halaman, auth, pembayaran,
+  atau data sensitif), tanya 1 baris sebelum mulai mengedit:
+  `"Tugas ini berskala besar; mau dipromosikan ke /pm, atau tetap /solo?"`
 - `/pm <tugas>`: **AKTIFKAN MODE PM (MULTI-AGENT)**.
   1. **WAJIB BACA `.agents/agents/pm.md`** dengan `read_file` sebelum mengambil tindakan apa pun (terutama saat memulai fitur/tugas baru atau bila aturan diperbarui). Jangan mengandalkan ingatan dari chat sebelumnya!
   2. **DILARANG KERAS MENULIS KODE SENDIRI**: Saat berada di mode `/pm`, agen utama (PM) **TIDAK BOLEH** memanggil `write_file` atau `edit_file` pada folder kode aplikasi (wilayah BE, FE, maupun Tes). Wilayah tulis PM **HANYA** `.agents/docs/` (`PROGRESS.md`, `API_SPEC.md`, `PROJECT_MAP.md`, dan kolom Status di `PRD.md`).
