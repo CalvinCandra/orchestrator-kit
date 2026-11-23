@@ -42,11 +42,12 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
    Lihat isi folder kerja. Abaikan .agents/, .git, .vscode, dan
    README. Cari file kunci dan folder kode (package.json,
    composer.json, requirements/pyproject, go.mod, src, app, dsb.).
-   - SUDAH ADA PROJECT: catat stack, struktur, perintah run/test, dan
-     fitur yang sudah ada. Tech mengikuti yang ada; jangan menawarkan
-     tech lain kecuali user meminta. PRD hanya memuat fitur baru atau
-     perubahan, dan bagian Kerangka berisi struktur yang ada beserta
-     perubahan yang diperlukan. Tidak ada F00.
+   - SUDAH ADA PROJECT: catat stack, struktur, perintah run/test,
+     fitur yang sudah ada, serta peta folder inti BE/FE & file konvensi
+     utama (untuk bahan awal `PROJECT_MAP.md`). Tech mengikuti yang ada;
+     jangan menawarkan tech lain kecuali user meminta. PRD hanya memuat
+     fitur baru atau perubahan, dan bagian Kerangka berisi struktur yang ada
+     beserta perubahan yang diperlukan. Tidak ada F00.
    - KOSONG: lanjut wawancara, lalu rancang kerangka dari nol (lihat
      langkah 5) dan daftarkan sebagai F00.
    - TIDAK JELAS (ada file tapi bukan project): tanya user, apakah
@@ -74,6 +75,8 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
      dalam satu putaran kerja.
    - ID tidak pernah dipakai ulang atau digeser. Fitur baru
      mendapat nomor berikutnya.
+   - Di akhir daftar fitur MVP (sebelum fitur Nanti), wajib tambahkan 1 step
+     khusus `QA-BATCH` (`QA-BATCH | Pengujian Terpadu, Code Review & Audit Keamanan | MVP | semua Fxx MVP`).
 4. DETAIL FITUR: untuk tiap fitur MVP, gali sampai terjawab:
    - tujuan dan siapa yang memakai
    - langkah user dari awal sampai akhir
@@ -85,6 +88,10 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
      ada REST API
    - komponen UI utama (daftar singkat), bila ada tampilan
    - kriteria selesai yang bisa dicek
+   - **daftar Test Case (`TC-Fxx-01`, `TC-Fxx-02`, ...)**: skenario ringkas
+     (normal, validasi/error, hak akses/role, _edge case_) berisi
+     `ID | Skenario | Input/Kondisi | Hasil Diharapkan` sebagai acuan `qa`
+     di step `QA-BATCH`.
      Fitur Nanti cukup satu sampai dua kalimat.
 5. TECH DAN KERANGKA
    Tech (bila user minta saran): 2 opsi, tiap opsi maksimal 3 baris
@@ -122,7 +129,8 @@ keseluruhan.
 # Daftar periksa sebelum menulis
 
 Tiap fitur punya ID unik. Tiap fitur MVP punya aturan, validasi, kasus
-kosong dan error, dan kriteria selesai. Tiap fitur MVP yang memakai
+kosong dan error, daftar Test Case (`TC-Fxx-*`), dan kriteria selesai.
+Daftar fitur MVP ditutup dengan step `QA-BATCH`. Tiap fitur MVP yang memakai
 REST API punya daftar endpoint, dan tiap fitur yang punya tampilan
 punya daftar komponen UI utama. Ketergantungan merujuk ID yang ada dan
 tidak melingkar. Bila project kosong: F00 ada dengan pohon folder,
@@ -137,9 +145,10 @@ alur alternatif.
 4 Daftar Fitur: tabel (ID, fitur, prioritas, bergantung pada, status
 awal "belum"), lalu satu sub-bagian per fitur berjudul "### F01 Nama"
 berisi tujuan, langkah, data dan validasi, aturan bisnis, kasus
-kosong/error/tepi, endpoint yang dibutuhkan, komponen UI utama, dan
-kriteria selesai. Bila project kosong, "### F00 Kerangka proyek"
-berisi isi bagian 8.
+kosong/error/tepi, endpoint yang dibutuhkan, komponen UI utama,
+daftar Test Case (`TC-Fxx-*`), dan kriteria selesai. Bila project kosong,
+"### F00 Kerangka proyek" berisi isi bagian 8, dan di akhir bagian fitur
+MVP ada "### QA-BATCH Pengujian & Audit Terpadu" (merujuk seluruh `TC-*`).
 5 Halaman dan navigasi (sebut ID fitur yang tampil di tiap halaman).
 6 Data dan aturan bisnis. 7 Output.
 8 Tech dan Kerangka Proyek: kondisi project (ada/kosong), tech,
