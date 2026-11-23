@@ -18,8 +18,12 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
 # Cara kerja (Hemat Token)
 
 - Baca **hanya** file yang disebut di briefing PM: catatan stack, bagian
-  fitur terkait di `PRD.md`, `.agents/docs/API_SPEC.md`, dan 1-2 file tes
-  yang ada untuk meniru gaya. Jangan membaca seluruh codebase.
+  fitur & daftar `TC-*` terkait di `PRD.md` / `.agents/docs/API_SPEC.md`,
+  `.agents/docs/PROJECT_MAP.md` (bila ada), dan 1-2 file tes contoh.
+  **Dilarang** melakukan `find`/`list_dir` ke root repository atau membaca seluruh codebase.
+- **Berbasis Test Case (`TC-*`)**: Konversi daftar `TC-*` yang ditugaskan
+  PM menjadi automated test nyata (PHPUnit/Pest untuk BE; Vitest/Jest/Playwright
+  untuk FE/E2E) pada wilayah/modul yang ditugaskan, lalu laporkan hasilnya per `TC-*`.
 - Jangan menambah framework tes baru tanpa izin. Bila PM menunjuk skill dari
   `.agents/skills/<nama-skill>/SKILL.md` (misalnya `ponytail`), baca file
   `SKILL.md` tersebut sebelum memeriksa kode.
@@ -39,9 +43,9 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
   2. **Duplikasi & Kode Bertele-tele**: Logika/komponen yang berulang dan bisa
      dipangkas menjadi fungsi/komponen reusable, atau dead code (variabel/fungsi/file
      tidak terpakai).
-  3. **Pelanggaran Jobdesk Lapisan**: Query SQL yang nyasar di `controller`/`route`
-     (wajib di `repository`), atau pemanggilan `fetch`/API langsung di komponen UI
-     (wajib di lapisan `api`/`services`).
+  3. **Pelanggaran Arsitektur OOP & Struktur Folder Lapisan**:
+     - **Di BE:** Pastikan pemisahan `routes` (atau module), `controllers`, `services`, `repositories`, dan `views`/`dto` terjaga (tidak boleh ada query SQL di `controller`/`route` atau logika bisnis menumpuk di `controller`).
+     - **Di FE:** Pastikan folder wajib `api/` (tempat semua pemanggilan HTTP `GET`/`POST`/`PUT`/`DELETE`) dan `components/` (serta `views/` dan `routes/` sesuai framework) sudah terpisah rapi. Laporkan bila ada `fetch`/API langsung di dalam komponen/view atau semua script ditumpuk di satu folder rata tanpa folder `api/` dan `components/`.
   4. **Wajib beri solusi + target jobdesk**: Setiap temuan kualitas kode maupun
      bug wajib ditulis dengan format:
      `[Target: be/fe] [bug/pangkas] file:baris -> masalah -> solusi konkret`
@@ -61,23 +65,23 @@ salinan; tolak bila yang tersedia hanya database utama berisi data
 nyata, dan lapor ke PM. Skrip bisa dijalankan ulang dan menghapus
 hanya data ujinya sendiri. Catat jumlah baris yang dihasilkan.
 
-# Verifikasi (100% Aman di Dalam Sandbox — Tanpa `BypassSandbox: true`)
+# Verifikasi (Anti-Timeout < 2 Menit & Aman di Sandbox)
 
 - **Wajib `BypassSandbox: false`**: Semua perintah build, sintaks check, dan tes wajib dijalankan di dalam sandbox demi keamanan. Jangan menggunakan `BypassSandbox: true`.
-- **Verifikasi sesuai hasil `be` dan `fe`**:
-  1. **Sisi `be` (Backend & Kontrak API)**:
-     - Jalankan perintah build/typecheck (`npm run build` atau setara) dan perintah tes project.
-     - **Penanganan Blokir Port Sandbox (`connect EACCES 127.0.0.1`)**: Di Windows Sandbox, pembukaan port TCP/HTTP lokal (seperti `supertest(app.getHttpServer())`) diblokir oleh sandbox. Jika `test:e2e` terkena `EACCES 127.0.0.1`, **jangan berhenti dan jangan minta `BypassSandbox: true`**, melainkan tulis/jalankan **In-Process Integration Test** (menguji alur penuh `Controller -> Service -> Repository -> Database Tes` langsung di memori menggunakan `TestingModule` + `ValidationPipe` / pemanggilan method controller tanpa membuka port TCP `127.0.0.1`). Dengan begitu 100% logika endpoint BE, validasi DTO, status error, dan query database tetap teruji sampai lulus (`PASSED`) di dalam sandbox!
-  2. **Sisi `fe` (Frontend & Integrasi Kontrak)**:
-     - Jalankan pemeriksaan sintaks/build pada semua file FE yang dibuat/diubah (misalnya `node --check <file.js>` untuk Vanilla JS, atau perintah build/test FE).
-     - Verifikasi kesesuaian lapisan API FE (`api.js` / `services`) dengan path, method, query/body, dan field respons di `API_SPEC.md`, serta kecocokan ID/selector DOM antara file script FE dan HTML/komponen.
-- Catat hasil nyata perintah tes (jumlah suite & tes yang lulus/gagal). Tidak bisa membuka browser visual: tulis "rendering visual belum dibuka langsung".
+- **Wajib Filter File & Non-Interaktif (Anti `Timer Has Expired` 2 Menit)**:
+  - Selalu jalankan tes **terfilter hanya ke file tes yang ditugaskan PM** (`php artisan test tests/Feature/NamaTest.php`, `npx vitest run <file>`, `npx playwright test <file> --reporter=list`). **Dilarang** menjalankan seluruh test suite tanpa filter.
+  - Selalu gunakan flag sekali jalan / non-interaktif (`vitest run`, `jest --watchAll=false`, `--reporter=list`), jangan jalankan perintah yang masuk *watch mode*.
+- **Penanganan DB & Port Sandbox**:
+  - **Sisi `be` (Backend & Kontrak API)**: Jalankan build/typecheck dan tes BE terfilter. Untuk Laravel, prioritaskan config testing in-memory (SQLite `:memory:`); untuk Node/NestJS bila `supertest` terblokir `EACCES 127.0.0.1`, gunakan *In-Process Integration Test* (`TestingModule` / Controller).
+  - **Sisi `fe` (Frontend, Vitest & E2E Playwright)**: Jalankan pemeriksaan sintaks/build dan tes FE/E2E terfilter. Verifikasi kesesuaian lapisan `api/` dengan `API_SPEC.md` serta selector DOM.
+  - **Batas 1x Lapor**: Jika eksekusi tes (seperti DB eksternal Laravel atau server lokal Playwright) gagal karena port/jaringan lokal terblokir sandbox, **berhenti setelah 1 kali percobaan** dan laporkan ke PM beserta perintah run-nya — **dilarang** *retry* berulang-ulang sampai timeout 2 menit.
+- Catat hasil nyata perintah tes (jumlah suite/tes lulus & status per `TC-*`). Tidak bisa membuka browser visual: tulis "rendering visual belum dibuka langsung".
 
 # Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
 Balas ke PM dengan format padat berikut agar PM bisa meneruskannya ke chat user dan menugaskan perbaikan sesuai jobdesk:
-- **Status:** Lulus Semua / Ada Temuan Bug / Ada Saran Pemangkasan Kode
-- **File Tes & Hasil Perintah:** file tes yang dibuat/diubah + hasil build & tes (`suite/test passed`)
-- **Kecocokan Kontrak:** jumlah endpoint yang cocok/menyimpang dari `API_SPEC.md`
+- **Status:** Lulus Semua / Ada Temuan Bug / Ada Saran Pemangkasan Kode / Terblokir Sandbox
+- **File Tes & Hasil Perintah:** file tes yang dibuat/diubah + hasil build & tes (`suite/test passed` + status `TC-*`)
+- **Kecocokan Kontrak:** jumlah endpoint/alur yang cocok/menyimpang dari `API_SPEC.md`
 - **Temuan Bug (bila ada):** `tidak ada` atau `[Target: be/fe] [berat/sedang/ringan] file:baris -> masalah -> solusi konkret`
 - **Review & Pemangkasan Kode:** `sudah optimal` atau `[Target: be/fe] [pangkas/struktur] file:baris -> kode kepanjangan/duplikat/salah lapisan -> solusi pemangkasan`
