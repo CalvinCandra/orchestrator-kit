@@ -141,6 +141,10 @@ Stack ditentukan dari project/PRD, tidak diasumsikan.
    - Kalau `.agents/docs/PRD.md` ada: baca hanya tabel fitur, bagian fitur
      yang diminta (termasuk daftar `TC-*`), ketergantungannya, dan Tech/Kerangka.
      Jangan wawancara ulang yang sudah tertulis di PRD.
+     **Bila `PRD.md` tampak versi lama atau tidak relevan** dengan tugas
+     (misal refactor kode yang sudah jauh berubah): abaikan `PRD.md` lama itu,
+     jadikan kode aktual + `PROJECT_MAP.md` sebagai acuan utama, dan catat
+     1 baris saat Konfirmasi (`PRD.md lama diabaikan; pakai kode aktual`).
    - **Kerangka Proyek Awal** (bila project masih kosong / tahap inisialisasi
      kerangka di PRD): kerjakan sesuai bagian Kerangka di PRD. Tampilkan
      daftar folder dan file yang akan dibuat saat KONFIRMASI. Panggil
@@ -273,21 +277,23 @@ Stack ditentukan dari project/PRD, tidak diasumsikan.
 
    ## Tabel Fase <ID>
 
-   | Fase | Gelombang             | Agent                  | Status   | File Diubah/Dibuat                  | Hasil / Perintah     |
-   | :--- | :-------------------- | :--------------------- | :------- | :---------------------------------- | :------------------- |
-   | 1    | Kontrak & Skema       | pm, database           | selesai  | .agents/docs/API_SPEC.md, SCHEMA.md | Kontrak & skema siap |
-   | 2    | Kode (Paralel)        | be, fe                 | berjalan | ...                                 | ...                  |
-   | 3    | Audit & Uji (Paralel) | database, qa, security | belum    | ...                                 | ...                  |
+   | Fase | Gelombang       | Agent        | Status   | File Diubah/Dibuat                  | Hasil / Perintah     |
+   | :--- | :-------------- | :----------- | :------- | :---------------------------------- | :------------------- |
+   | 1    | Kontrak & Skema | pm, database | selesai  | .agents/docs/API_SPEC.md, SCHEMA.md | Kontrak & skema siap |
+   | 2    | Kode            | be, fe       | berjalan | ...                                 | ...                  |
 
    ## Riwayat Fitur Selesai
 
-   - [x] <ID/Nama Fitur Sebelumnya>
+   - [x] <ID/Nama Fitur Sebelumnya> (tunggu QA-BATCH / lulus QA-BATCH)
    ```
 
    Status fase hanya: `belum` / `berjalan` / `selesai` / `gagal`.
-   Saat seluruh fase fitur selesai dan lulus tes, ubah **Status:** atas menjadi
-   `SELESAI`, tambahkan fitur ke `Riwayat Fitur Selesai`, dan ubah kolom
-   `Status` fitur tersebut di `.agents/docs/PRD.md` menjadi `selesai`.
+   Saat fitur build selesai, ubah **Status:** atas menjadi `SELESAI`,
+   tambahkan ke `Riwayat Fitur Selesai` dengan penanda `(tunggu QA-BATCH)`
+   agar saat `QA-BATCH` nanti PM tahu seluruh cakupan fitur yang belum diuji,
+   dan ubah kolom `Status` fitur di `.agents/docs/PRD.md` (bila relevan)
+   menjadi `selesai`. Setelah `QA-BATCH` lulus, ubah penanda menjadi
+   `(lulus QA-BATCH)`.
 
 7. **RINGKASAN AKHIR PM KE USER (maksimal 8 baris)**
    Setelah seluruh fase selesai, barulah PM menampilkan rincian lengkap dalam

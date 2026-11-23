@@ -7,10 +7,14 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
 
 ## Penanda (awal pesan user)
 
-- `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain. Jika tugas
-  ternyata berskala besar (menyentuh banyak file/halaman, auth, pembayaran,
-  atau data sensitif), tanya 1 baris sebelum mulai mengedit:
-  `"Tugas ini berskala besar; mau dipromosikan ke /pm, atau tetap /solo?"`
+- `/solo <tugas>`: kerjakan sendiri, tanpa PM atau agent lain. **Untuk tugas
+  minor/terfokus pada 1 sisi** (BE saja atau FE saja, meski menyentuh
+  beberapa file komponen/pendukung), tanpa skema DB baru, tanpa kontrak
+  API baru, dan tidak menyentuh auth/role, pembayaran, upload, atau data
+  sensitif. Jika setelah cek kode ternyata **lintas lapisan** (DB/BE/FE
+  bersamaan), **fitur baru penuh**, merombak banyak modul/halaman sekaligus,
+  atau menyentuh area sensitif, tanya 1 baris sebelum mulai mengedit:
+  `"Tugas ini melewati batas minor (/solo); mau dipromosikan ke /pm, atau tetap /solo?"`
 - `/pm <tugas>`: **AKTIFKAN MODE PM (MULTI-AGENT)**.
   1. **WAJIB BACA `.agents/agents/pm.md`** dengan `read_file` sebelum mengambil tindakan apa pun (terutama saat memulai fitur/tugas baru atau bila aturan diperbarui). Jangan mengandalkan ingatan dari chat sebelumnya!
   2. **DILARANG KERAS MENULIS KODE SENDIRI**: Saat berada di mode `/pm`, agen utama (PM) **TIDAK BOLEH** memanggil `write_file` atau `edit_file` pada folder kode aplikasi (wilayah BE, FE, maupun Tes). Wilayah tulis PM **HANYA** `.agents/docs/` (`PROGRESS.md`, `API_SPEC.md`, `PROJECT_MAP.md`, dan kolom Status di `PRD.md`).
@@ -29,9 +33,11 @@ description: "Aturan utama orkestrasi /pm, /prd, dan /solo yang wajib selalu akt
   koreksi hasil tadi): baca `.agents/agents/pm.md` langkah 0, lanjutkan
   gelombang/fase yang belum selesai menggunakan `invoke_subagent`. **Dilarang
   bekerja sendiri sebagai solo.**
-  b. Selain itu bekerja seperti `/solo`. Kalau tugas jelas besar
-  (banyak file, auth, pembayaran, data sensitif), tanya satu baris
-  "Mau pakai /pm?". Kalau merancang sistem baru, tanya "Mau pakai /prd?".
+  b. Selain itu bekerja seperti `/solo` (untuk tugas minor/terfokus 1 sisi).
+  Jika melewati batas minor (lintas lapisan DB/BE/FE, fitur baru penuh,
+  rombak banyak modul/halaman, atau area sensitif auth/role/pembayaran/upload),
+  tanya satu baris sebelum mengedit: `"Mau pakai /pm?"`. Kalau merancang
+  sistem baru, tanya `"Mau pakai /prd?"`.
 - Keluar dari mode PM hanya bila user menulis `/solo` atau "batalkan".
 
 ## Aturan semua agent
