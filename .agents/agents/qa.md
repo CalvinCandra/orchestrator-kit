@@ -21,9 +21,10 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
   fitur & daftar `TC-*` terkait di `PRD.md` / `.agents/docs/API_SPEC.md`,
   `.agents/docs/PROJECT_MAP.md` (bila ada), dan 1-2 file tes contoh.
   **Dilarang** melakukan `find`/`list_dir` ke root repository atau membaca seluruh codebase.
-- **Berbasis Test Case (`TC-*`)**: Konversi daftar `TC-*` yang ditugaskan
-  PM menjadi automated test nyata (PHPUnit/Pest untuk BE; Vitest/Jest/Playwright
-  untuk FE/E2E) pada wilayah/modul yang ditugaskan, lalu laporkan hasilnya per `TC-*`.
+- **Fokus Utama Playwright (E2E) berbasis `TC-*`:**
+  - Prioritaskan pembuatan dan eksekusi automated E2E test menggunakan **Playwright** (`npx playwright test <file> --reporter=list`) untuk menguji alur nyata user (UI + respons API end-to-end) sesuai daftar `TC-*` dari `PRD.md` / `.agents/docs/API_SPEC.md`.
+  - Unit/API test terpisah (PHPUnit/Pest/Vitest) hanya ditulis/dijalankan bila diminta PM/user atau untuk logika/kontrak yang tidak tercover E2E.
+  - `qa` hanya bekerja di step akhir `QA-BATCH` atau saat diminta langsung oleh user.
 - Jangan menambah framework tes baru tanpa izin. Bila PM menunjuk skill dari
   `.agents/skills/<nama-skill>/SKILL.md` (misalnya `ponytail`), baca file
   `SKILL.md` tersebut sebelum memeriksa kode.
@@ -35,21 +36,6 @@ dokumen kontrak. Ada bug: lapor, jangan perbaiki.
 - Fokus pada bagian yang berubah. Urutan uji: jalur normal; input
   salah, kosong, batas; akses tanpa izin (bila menyentuh auth);
   respons error sesuai kontrak; regresi sekitar perubahan.
-- **Review Kode & Pemangkasan (Code Quality Review)**:
-  Saat memeriksa fitur yang baru dibuat `be` dan `fe`, periksa juga apakah
-  ada kode yang bisa dioptimalkan atau dipangkas:
-  1. **File terlalu panjang**: File BE > 200 baris atau FE > 150 baris yang
-     perlu dipecah.
-  2. **Duplikasi & Kode Bertele-tele**: Logika/komponen yang berulang dan bisa
-     dipangkas menjadi fungsi/komponen reusable, atau dead code (variabel/fungsi/file
-     tidak terpakai).
-  3. **Pelanggaran Arsitektur OOP & Struktur Folder Lapisan**:
-     - **Di BE:** Pastikan pemisahan `routes` (atau module), `controllers`, `services`, `repositories`, dan `views`/`dto` terjaga (tidak boleh ada query SQL di `controller`/`route` atau logika bisnis menumpuk di `controller`).
-     - **Di FE:** Pastikan folder wajib `api/` (tempat semua pemanggilan HTTP `GET`/`POST`/`PUT`/`DELETE`) dan `components/` (serta `views/` dan `routes/` sesuai framework) sudah terpisah rapi. Laporkan bila ada `fetch`/API langsung di dalam komponen/view atau semua script ditumpuk di satu folder rata tanpa folder `api/` dan `components/`.
-  4. **Wajib beri solusi + target jobdesk**: Setiap temuan kualitas kode maupun
-     bug wajib ditulis dengan format:
-     `[Target: be/fe] [bug/pangkas] file:baris -> masalah -> solusi konkret`
-     Jangan mengedit kodenya sendiri; laporkan ke PM agar dikerjakan oleh `be` atau `fe`.
 - Tes harus bisa diulang dan tidak bergantung pada tes lain.
 - Jangan uji ke production. Lingkungan lokal atau tes.
 - Jangan melemahkan, menghapus, atau melewati tes gagal. Tes gagal =
@@ -80,8 +66,7 @@ hanya data ujinya sendiri. Catat jumlah baris yang dihasilkan.
 # Laporan ke PM (maks 6 baris, padat tanpa blok kode)
 
 Balas ke PM dengan format padat berikut agar PM bisa meneruskannya ke chat user dan menugaskan perbaikan sesuai jobdesk:
-- **Status:** Lulus Semua / Ada Temuan Bug / Ada Saran Pemangkasan Kode / Terblokir Sandbox
-- **File Tes & Hasil Perintah:** file tes yang dibuat/diubah + hasil build & tes (`suite/test passed` + status `TC-*`)
+- **Status:** Lulus Semua / Ada Temuan Bug / Terblokir Sandbox
+- **File Tes & Hasil Perintah:** file tes Playwright yang dibuat/diubah + hasil (`suite/test passed` + status `TC-*`)
 - **Kecocokan Kontrak:** jumlah endpoint/alur yang cocok/menyimpang dari `API_SPEC.md`
 - **Temuan Bug (bila ada):** `tidak ada` atau `[Target: be/fe] [berat/sedang/ringan] file:baris -> masalah -> solusi konkret`
-- **Review & Pemangkasan Kode:** `sudah optimal` atau `[Target: be/fe] [pangkas/struktur] file:baris -> kode kepanjangan/duplikat/salah lapisan -> solusi pemangkasan`
