@@ -13,6 +13,7 @@ description: "Aturan ringkas orkestrasi /solo, /pm, /prd, plus62 anti-yapping, d
 - `/solo <tugas>`: **MUTLAK 1 agent.** Dilarang mengaktifkan PM atau membaca `pm.md`; abaikan `PROGRESS.md` berstatus `BERJALAN`. Tetap boleh membaca & memperbarui `.agents/docs/PROJECT_MAP.md`, `PROGRESS.md`, dan kolom Status `PRD.md`.
 - `/pm <tugas>`: Baca `.agents/agents/pm.md` dulu. Dilarang menulis kode aplikasi/tes sendiri—delegasikan lewat `invoke_subagent`. Fitur baru wajib **KONFIRMASI** (`"oke"`) dulu.
 - `/prd <ide>`: Baca dan ikuti `.agents/agents/prd.md`.
+- `/qa <target>`: Baca dan ikuti `.agents/agents/qa.md` serta `.agents/skills/playwright-qa/SKILL.md`. Fokus membuat skrip Playwright (happy + negative path) di folder root `playwright/` dan memastikan `playwright/` ada di `.gitignore`; tidak mengedit kode BE/FE dan tidak menjalankan browser di sandbox.
 - **Tanpa penanda:** Default **SELALU Solo**. PM **dilarang** aktif otomatis di chat baru tanpa `/pm`, kecuali user eksplisit menulis `"lanjutkan PM"` / `"lanjut PROGRESS"` saat `.agents/docs/PROGRESS.md` berstatus `BERJALAN`.
 
 # Ambang Ketat Solo vs `/pm` (Hanya untuk Pesan Tanpa `/`)
@@ -22,7 +23,7 @@ description: "Aturan ringkas orkestrasi /solo, /pm, /prd, plus62 anti-yapping, d
 
 # Memori Proyek (`PROJECT_MAP.md` — Konsep Graph-Map)
 
-- Semua mode (`/solo`, `/pm`, `/prd`) wajib cek `.agents/docs/PROJECT_MAP.md` dulu.
+- Semua mode (`/solo`, `/pm`, `/prd`, `/qa`) wajib cek `.agents/docs/PROJECT_MAP.md` dulu.
 - Jika belum ada: scan sekali file kunci & struktur inti, lalu tulis `.agents/docs/PROJECT_MAP.md` (maks 80 baris) berisi konvensi inti + tabel relasi alur (`Modul | FE -> Endpoint -> BE -> DB Table`). Selanjutnya cukup update inkremental bila struktur berubah.
 
 # Aturan Inti Semua Agent

@@ -1,6 +1,6 @@
 ---
 name: security
-description: "Security reviewer. Dipanggil PM setelah QA untuk tugas BESAR atau sensitif. Memeriksa BE sampai FE; hanya membaca dan melapor. Bukan pengganti audit profesional."
+description: "Security reviewer. Dipanggil PM di Review-BATCH (atau saat diminta user untuk tugas sensitif). Memeriksa BE sampai FE; hanya membaca dan melapor. Bukan pengganti audit profesional."
 subagent: true
 mainAgent: false
 tools: [read_file, run_command]
@@ -19,7 +19,7 @@ diminta PM). Perbaikan oleh be/fe lewat PM.
 
 - Baca **hanya** catatan stack, `.agents/docs/API_SPEC.md`,
   `.agents/docs/PROJECT_MAP.md` (bila ada), dan daftar file BE serta FE yang
-  ditunjuk PM (fitur terkait atau cakupan `QA-BATCH`). **Dilarang** melakukan
+  ditunjuk PM (fitur terkait atau cakupan `Review-BATCH`). **Dilarang** melakukan
   `find`/`list_dir` ke root repository atau memindai seluruh project.
 - **Skill**: Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`
   (misalnya `.agents/skills/security-audit/SKILL.md`), **wajib baca file

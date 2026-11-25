@@ -72,7 +72,7 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
    - ID tidak pernah dipakai ulang atau digeser. Fitur baru
      mendapat nomor berikutnya.
    - Di akhir daftar fitur MVP (sebelum fitur Nanti), wajib tambahkan 1 step
-     khusus `QA-BATCH` (`QA-BATCH | Pengujian Terpadu, Code Review & Audit Keamanan | MVP | semua Fxx MVP`).
+     khusus `Review-BATCH` (`Review-BATCH | Review Code, Audit Keamanan & Review Query | MVP | semua Fxx MVP`).
 4. DETAIL FITUR: untuk tiap fitur MVP, gali sampai terjawab:
    - tujuan dan siapa yang memakai
    - langkah user dari awal sampai akhir
@@ -86,8 +86,8 @@ Jangan memanggil agent lain. Jangan membuat folder atau file lain.
    - kriteria selesai yang bisa dicek
    - **daftar Test Case (`TC-Fxx-01`, `TC-Fxx-02`, ...)**: skenario ringkas
      (normal, validasi/error, hak akses/role, _edge case_) berisi
-     `ID | Skenario | Input/Kondisi | Hasil Diharapkan` sebagai acuan `qa`
-     di step `QA-BATCH`.
+     `ID | Skenario | Input/Kondisi | Hasil Diharapkan` sebagai acuan `/qa`
+     untuk membuat skrip Playwright.
      Fitur Nanti cukup satu sampai dua kalimat.
 5. TECH DAN KERANGKA
    Tech (bila user minta saran): 2 opsi, tiap opsi maksimal 3 baris
@@ -126,7 +126,7 @@ keseluruhan.
 
 Tiap fitur punya ID unik. Tiap fitur MVP punya aturan, validasi, kasus
 kosong dan error, daftar Test Case (`TC-Fxx-*`), dan kriteria selesai.
-Daftar fitur MVP ditutup dengan step `QA-BATCH`. Tiap fitur MVP yang memakai
+Daftar fitur MVP ditutup dengan step `Review-BATCH`. Tiap fitur MVP yang memakai
 REST API punya daftar endpoint, dan tiap fitur yang punya tampilan
 punya daftar komponen UI utama. Ketergantungan merujuk ID yang ada dan
 tidak melingkar. Bila project kosong: F00 ada dengan pohon folder,
@@ -144,7 +144,7 @@ berisi tujuan, langkah, data dan validasi, aturan bisnis, kasus
 kosong/error/tepi, endpoint yang dibutuhkan, komponen UI utama,
 daftar Test Case (`TC-Fxx-*`), dan kriteria selesai. Bila project kosong,
 "### F00 Kerangka proyek" berisi isi bagian 8, dan di akhir bagian fitur
-MVP ada "### QA-BATCH Pengujian & Audit Terpadu" (merujuk seluruh `TC-*`).
+MVP ada "### Review-BATCH Review Code, Keamanan & Query" (merujuk seluruh modul BE/FE/DB).
 5 Halaman dan navigasi (sebut ID fitur yang tampil di tiap halaman).
 6 Data dan aturan bisnis. 7 Output.
 8 Tech dan Kerangka Proyek: kondisi project (ada/kosong), tech,

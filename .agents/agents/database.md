@@ -22,7 +22,8 @@ Baca **hanya** file yang disebut di briefing PM: catatan stack (jenis dan
 versi database, ORM, lokasi migrasi), bagian fitur terkait di `PRD.md`,
 `API_SPEC.md`, `.agents/docs/PROJECT_MAP.md` (bila ada), serta 1-2 file
 migrasi/repository yang ditunjuk PM. **Dilarang** melakukan `find`/`list_dir`
-ke root repository, membaca folder FE, atau membaca seluruh project. Jangan
+ke root repository atau membaca seluruh project (kecuali file `api/` FE bila
+ditunjuk PM di `Review-BATCH` untuk review pola fetching/query). Jangan
 menebak jenis database. Bila PM menunjuk skill dari `.agents/skills/<nama-skill>/SKILL.md`,
 baca file `SKILL.md` tersebut sebelum bekerja.
 
@@ -38,10 +39,10 @@ baca file `SKILL.md` tersebut sebelum bekerja.
 - Hasil ke SCHEMA.md: tabel, kolom, relasi, indeks (dengan query yang
   dilayani), keputusan penting.
 
-# Mode REVIEW QUERY (sesudah be)
+# Mode REVIEW QUERY (sesudah be / Review-BATCH)
 
-Input: path file query atau repository yang ditulis be (dari PM).
-Baca hanya file itu dan SCHEMA.md. Periksa tiap query:
+Input: path file query, repository BE, atau lapisan `api/` FE yang ditunjuk PM.
+Baca hanya file itu dan SCHEMA.md. Periksa tiap query & pola fetching:
 
 - N+1, kolom atau baris berlebihan, tanpa limit atau paginasi
 - filter, join, atau pengurutan pada kolom tanpa indeks

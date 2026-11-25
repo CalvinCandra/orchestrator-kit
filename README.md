@@ -25,7 +25,8 @@ _(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan 
 | Kamu tulis di chat  | Yang terjadi                                                                                                                                                                           |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/prd <ide>`        | Agent `prd` memeriksa kondisi project (kosong/sudah ada), mewawancarai kamu sampai tuntas, lalu menulis `.agents/docs/PRD.md`.                                                         |
-| `/pm <fitur/tugas>` | Agent `pm` mendeteksi stack, memilih sub-agent & skill, meminta konfirmasi `"oke"`, lalu menjalankan sub-agent dalam **gelombang paralel** (`database`, `be`, `fe`, `qa`, `review`, `security`). |
+| `/pm <fitur/tugas>` | Agent `pm` mendeteksi stack, memilih sub-agent & skill, meminta konfirmasi `"oke"`, lalu menjalankan sub-agent dalam **gelombang paralel** (`database`, `be`, `fe`, `review`, `security`). |
+| `/qa <target>`      | Agent `qa` membuat automation test Playwright (happy + negative path) di folder root `playwright/` (otomatis di-`.gitignore`) untuk kamu jalankan sendiri. |
 | `/solo <tugas>`     | Antigravity mengerjakan langsung sendiri tanpa PM dan tanpa sub-agent lain (cocok untuk tugas kecil/cepat; tetap bisa update `PROJECT_MAP.md` & `PROGRESS.md`). |
 
 ---
@@ -40,7 +41,7 @@ _(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan 
 │   ├── be.md             # REST API, logika bisnis, struktur berlapis, & query berparameter
 │   ├── fe.md             # Halaman, komponen modular, state, & integrasi API
 │   ├── database.md       # Skema, strategi indeks, EXPLAIN query plan, & audit performa
-│   ├── qa.md             # Pengujian E2E Playwright berbasis TC-* di QA-BATCH / saat diminta
+│   ├── qa.md             # Membuat automation E2E Playwright (happy + negative path) via /qa di folder playwright/
 │   ├── review.md         # Code quality reviewer (file panjang, duplikasi, arsitektur BE/FE)
 │   └── security.md       # Audit keamanan BE sampai FE + rekomendasi perbaikan konkret
 ├── rules/
@@ -49,6 +50,7 @@ _(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan 
 │   ├── ponytail/         # Pragmatic senior dev (YAGNI, reuse, native-first, kode ringkas)
 │   ├── frontend-design/  # Anti AI-slop, desain visual berkarakter, & hierarki tipografi
 │   ├── humanizer/        # Menghilangkan kalimat kaku/robotik khas AI pada teks UI & dokumen
+│   ├── playwright-qa/    # Standar E2E Playwright (adaptif auth/SSO, anti-flaky, isolasi data)
 │   └── security-audit/   # Metodologi audit keamanan berbasis bukti (Source -> Validation -> Sink)
 └── docs/
     └── README.md         # Tempat menyimpan PRD.md, PROJECT_MAP.md, API_SPEC.md, SCHEMA.md, & PROGRESS.md
@@ -56,13 +58,14 @@ _(Atau jika sudah dipublish ke npm / di-`npm link` secara lokal, cukup jalankan 
 
 ---
 
-## Gelombang Eksekusi Paralel pada `/pm` (Build-First + `QA-BATCH`)
+## Gelombang Eksekusi Paralel pada `/pm` (Build-First + `Review-BATCH`)
 
 1. **KONFIRMASI**: PM menampilkan header, rencana gelombang, dan rekomendasi skill -> berhenti menunggu `"oke"` darimu.
 2. **FASE 1 [Kontrak & Skema]**: PM menyusun `.agents/docs/API_SPEC.md` (beserta `TC-*`), bersama `database` yang merancang `.agents/docs/SCHEMA.md` bila ada tabel/query kompleks.
 3. **FASE 2 [Gelombang Kode — Paralel]**: Sub-agent `be` dan `fe` berjalan bersamaan di wilayah foldernya masing-masing (cek syntax/build ringan).
-4. **STEP AKHIR `QA-BATCH` [Uji, Review & Audit — Paralel]**: `qa` (E2E Playwright per `TC-*`), `review` (kualitas & lapisan kode), `security` (audit keamanan), dan `database` (review query bila perlu) berjalan bersamaan.
-5. **PERBAIKAN & VERIFIKASI ULANG (Opsional)**: Hanya berjalan bila `QA-BATCH` menemukan bug, kode perlu dipangkas, atau celah keamanan (`[Target: be/fe]`).
+4. **STEP AKHIR `Review-BATCH` [Review & Audit — Paralel]**: `review` (kualitas & lapisan kode BE/FE), `security` (audit keamanan BE/FE), dan `database` (review query DB & query di BE/FE) berjalan bersamaan.
+5. **PERBAIKAN & VERIFIKASI ULANG (Opsional)**: Hanya berjalan bila `Review-BATCH` menemukan masalah kualitas, celah keamanan, atau query lambat (`[Target: be/fe]`).
+6. **OTOMASI E2E (`/qa`)**: Kapan pun siap, ketik `/qa <fitur/target>` untuk membuat skrip Playwright (happy + negative path) di `playwright/` (di-`.gitignore`) agar bisa kamu jalankan sendiri.
 
 ---
 

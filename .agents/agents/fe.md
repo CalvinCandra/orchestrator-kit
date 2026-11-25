@@ -58,8 +58,7 @@ Butuh di luar wilayah: berhenti dan lapor.
 # Cara kerja
 
 - Satu tugas satu perubahan terfokus.
-- Tangani tiga keadaan API: memuat, berhasil, gagal (pesan jelas),
-  serta keadaan kosong.
+- Tangani tiga keadaan API: memuat, berhasil, gagal (wajib pesan bahasa awam/non-IT yang jelas dan solutif — dilarang menampilkan pesan teknis mentah seperti kode `500`, `SQLSTATE`, atau `error.message` sistem), serta keadaan kosong.
 - Validasi klien hanya kenyamanan; server tetap utama.
 - Tanpa HTML mentah dari data pengguna (XSS). Tanpa secret di kode FE.
 - Dasar aksesibilitas: label input, teks alternatif, keyboard.
