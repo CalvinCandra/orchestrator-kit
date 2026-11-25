@@ -69,3 +69,10 @@ Use active voice as default. A CTA says exactly what happens when it is used: "S
 Treat failure and emptiness as moments for direction, not mood. Explain what went wrong and how to fix it, in the interface's voice rather than a person's. Errors don't apologize, and they are never vague about what happened. An empty screen is an invitation to act.
 
 Keep the tone conversational: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each written element do exactly one job.
+
+## Technical UX & Accessibility Checklist (Non-IT Friendly)
+
+- **Semantic HTML & Keyboard:** Use native `<button>`, `<a>`, `<label>`, `<main>`, and `<nav>`; ensure every interactive control has a visible `:focus-visible` ring and works via keyboard (`Tab` / `Enter` / `Escape`).
+- **Forms & Touch Targets:** Pair every input with an explicit `<label>`, show inline validation directly below the field, disable double-submit while loading, and keep mobile tap targets comfortable (`>= 40x40px`).
+- **Human-Friendly Alerts (Never Expose Tech Jargon):** Never render raw technical errors (`500`, `Network Error`, `SQLSTATE`, `TypeError`, stack traces, or raw `error.message`) in user-facing alerts or toasts. Map failures to plain, calm language for non-technical users with a clear next step (e.g., *"Data belum berhasil disimpan. Coba periksa koneksi internet Anda lalu ulangi."*; *"Sesi Anda telah berakhir. Silakan masuk kembali."*).
+- **Layout Stability & States:** Handle `loading` (skeleton/spinner with stable height), `empty` (clear call-to-action), and `error` (retry action) states on every data-driven view; set explicit dimensions or `aspect-ratio` on images/media to prevent layout shift.

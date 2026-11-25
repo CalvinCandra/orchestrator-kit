@@ -1,6 +1,6 @@
 ---
 name: review
-description: "Code reviewer. Dipanggil PM di QA-BATCH (atau saat diminta user) untuk memeriksa kualitas kode, duplikasi, file terlalu panjang, dan arsitektur lapisan BE/FE. Hanya membaca dan melapor; tidak mengedit kode."
+description: "Code reviewer. Dipanggil PM di Review-BATCH (atau saat diminta user) untuk memeriksa kualitas kode, duplikasi, file terlalu panjang, dan arsitektur lapisan BE/FE. Hanya membaca dan melapor; tidak mengedit kode."
 subagent: true
 mainAgent: false
 tools: [read_file]
